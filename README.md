@@ -215,8 +215,8 @@ Place the downloaded file in the project root as `best_model (1).pt`. The server
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/gupta-cutu.git
-cd gupta-cutu
+git clone https://github.com/your-username/LegalClassifier.git
+cd LegalClassifier
 ```
 
 ### 2. Create a virtual environment
@@ -282,7 +282,7 @@ jupyter notebook
 
 ## Hosted Demo
 
-> **[(https://deb044.github.io/BDH-ECHR/)]**
+> **[(https://huggingface.co/spaces/DebarghyaD/LegalClassifier)]**
 
 ---
 
@@ -303,7 +303,7 @@ The interactive dashboard has 5 tabs:
 ## Repository Structure
 
 ```
-gupta-cutu/
+LegalClassifier/
 ├── src/
 │   ├── model/
 │   │   ├── architecture.py         # BDH model classes (BDHConfig, BDHBackbone, BDHClassifier)
@@ -344,6 +344,17 @@ gupta-cutu/
 └── README.md
 ```
 
+---
+## TEAM MEMBERS  AND CONTRIBUTIONS : 
+
+- ABHI TANWAR - Understanding the model architecture and ideation of the way forward, planning.
+- ARNAV GUPTA - Sparsity exploration and implementation showing neurons fired.
+- NALIN GOEL - Hebbian learning demonstration, and long context handling.
+- KARAN ADITYA - Interpretability demonstration and sparsity exploration.
+- DEBARGHYA DAS - Prototype web development and ideation
+- PRIYANSHU DEBNATH - Ideation and development.
+- ATRIJO PAL - Ideation and development.
+- DHAIRYA NISAR - Ideation and development.
 ---
 
 ## Limitations
