@@ -199,9 +199,9 @@ The dashboard renders this architecture live for every case you analyze — node
 
 ## Download the Trained Model
 
-> **[Download `best_model (1).pt` — [(https://drive.google.com/file/d/1BQpp5ojmteV56gIZwtcOGk1v27eSnqzY/view?usp=sharing)]**
+> **[Download `best_model.pt` — [(https://drive.google.com/file/d/1BQpp5ojmteV56gIZwtcOGk1v27eSnqzY/view?usp=sharing)]**
 
-Place the downloaded file in the project root as `best_model (1).pt`. The server will load it automatically.
+Place the downloaded file in the project root as `best_model.pt`. The server will load it automatically.
 
 ---
 
@@ -383,7 +383,7 @@ LegalClassifier/
 
 ## Video Demo and Screenshots
 
-> **[Add video demo link here]**
+> **[https://youtu.be/B8afc055Njs]**
 
 ### Predicted Violations — Article 6 flagged at 99.7% confidence
 
@@ -413,3 +413,4 @@ Each cell shows how strongly a neuron (row) is associated with a legal concept (
 - Dataset: Chalkidis et al. (2021), *"Paragraph-level Rationale Extraction through Regularization"*, NAACL 2021 — `mathurinache/ecthrnaacl2021` on Kaggle
 - Monosemanticity: Elhage et al. (2022), *"Toy Models of Superposition"*, Anthropic
 - Sparse autoencoders and interpretability: Bricken et al. (2023), *"Towards Monosemanticity"*, Anthropic
+
