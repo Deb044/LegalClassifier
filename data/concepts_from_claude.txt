@@ -1,0 +1,599 @@
+RATIONALE_ID: 1
+CONCEPTS: ["journalist source protection", "compelled testimony of witness", "market manipulation indictment", "press freedom vs criminal investigation", "scope of testimonial obligation"]
+
+RATIONALE_ID: 2
+CONCEPTS: ["unlawful search and seizure", "arbitrary institution of criminal proceedings", "compensation claim for unlawful police action", "non-pecuniary damage from prosecutorial misconduct"]
+
+RATIONALE_ID: 3
+CONCEPTS: ["court procedural error overlooking time-limit", "lack of power to set aside own decision", "referral to ECtHR after domestic remedy exhausted"]
+
+RATIONALE_ID: 4
+CONCEPTS: ["appellate hearing in absence of defendant", "inadequate notice of appeal hearing", "right to be present at appellate proceedings", "forgery in office conviction"]
+
+RATIONALE_ID: 5
+CONCEPTS: ["dangerous detainee classification", "strip search degrading treatment", "constant CCTV monitoring of prisoner", "restricted access to daylight in cell", "mandatory handcuffing outside cell"]
+
+RATIONALE_ID: 6
+CONCEPTS: ["denial of legal assistance to witness", "interviewing suspect as witness to avoid procedural rights", "right to legal assistance from onset of suspicion", "repeated questioning without counsel"]
+
+RATIONALE_ID: 7
+CONCEPTS: ["inadequate prison conditions for disabled detainee", "social isolation of prisoner with disability", "overcrowding insufficient personal space", "failure to provide special assistance to disabled prisoner"]
+
+RATIONALE_ID: 8
+CONCEPTS: ["third-instance final judgment", "reasonable time of proceedings"]
+
+RATIONALE_ID: 9
+CONCEPTS: ["appellate court hearing without defence counsel present", "inadequate notification of appeal hearing date", "right to be present at appellate proceedings"]
+
+RATIONALE_ID: 10
+CONCEPTS: ["customs confiscation without clear legal basis", "customs fine for undeclared silver", "proportionality of customs penalty"]
+
+RATIONALE_ID: 11
+CONCEPTS: ["reasonable time of proceedings", "length of civil proceedings", "repeated adjournments at plaintiff's request"]
+
+RATIONALE_ID: 12
+CONCEPTS: ["waiting period allowance disability benefit", "pension rights upon onset of disability", "retroactive application of pension legislation"]
+
+RATIONALE_ID: 13
+CONCEPTS: ["police ill-treatment with racial slur", "Roma victim of police brutality", "substitute private prosecution for police abuse", "criminal complaint against police officers"]
+
+RATIONALE_ID: 14
+CONCEPTS: ["mandatory time-limit not subject to extension", "national holiday effect on limitation period", "claim filed out of time"]
+
+RATIONALE_ID: 15
+CONCEPTS: ["covert telephone interception authorisation", "broad surveillance order lacking specificity", "judicial authorisation of surveillance without sufficient reasoning"]
+
+RATIONALE_ID: 16
+CONCEPTS: ["lengthy criminal investigation into 1989 events", "statute of limitations on mass human rights violations", "investigation closure partly time-barred"]
+
+RATIONALE_ID: 17
+CONCEPTS: ["fabricated sexual assault allegations", "publication of altered photo as defamation", "online publication constituting defamation", "prior criminal allegations relevant to defamation context"]
+
+RATIONALE_ID: 18
+CONCEPTS: ["supervisory review quashing enforcement judgment", "enforcement of civil judgment", "supervisory review partially quashing appeal judgment"]
+
+RATIONALE_ID: 19
+CONCEPTS: ["police use of force at football match", "unidentified police officers at public event", "lack of individual identification on police uniforms", "truncheon strike causing laceration"]
+
+RATIONALE_ID: 20
+CONCEPTS: ["repeated adjournments at plaintiff's request", "reasonable time of proceedings", "case transferred between judges"]
+
+RATIONALE_ID: 21
+CONCEPTS: ["non-enforcement of domestic judgment", "writ of execution returned to applicant", "failure to pay pursuant to court order"]
+
+RATIONALE_ID: 22
+CONCEPTS: ["dangerous detainee classification", "classification based on danger to prison order", "monitoring and surveillance of detainee"]
+
+RATIONALE_ID: 23
+CONCEPTS: ["compelled testimony of witness", "journalist source protection", "press freedom vs criminal investigation"]
+
+RATIONALE_ID: 24
+CONCEPTS: ["forgery in office conviction", "appellate hearing in absence of defendant", "expert qualification challenged by defendant"]
+
+RATIONALE_ID: 25
+CONCEPTS: ["dangerous detainee classification", "strip search degrading treatment", "constant CCTV monitoring of prisoner", "restricted access to daylight in cell"]
+
+RATIONALE_ID: 26
+CONCEPTS: ["denial of legal assistance to witness", "interviewing suspect as witness to avoid procedural rights", "right to legal assistance from onset of suspicion"]
+
+RATIONALE_ID: 27
+CONCEPTS: ["inadequate prison conditions for disabled detainee", "social isolation of prisoner with disability", "insufficient personal space in cell"]
+
+RATIONALE_ID: 28
+CONCEPTS: ["third-instance final judgment"]
+
+RATIONALE_ID: 29
+CONCEPTS: ["judicial authorisation of surveillance without sufficient reasoning", "covert telephone interception authorisation", "broad surveillance order lacking specificity"]
+
+RATIONALE_ID: 30
+CONCEPTS: ["non-enforcement of domestic judgment", "enforcement proceedings terminated debt unrecoverable"]
+
+RATIONALE_ID: 31
+CONCEPTS: ["dangerous detainee classification", "mandatory handcuffing outside cell", "constant CCTV monitoring of prisoner"]
+
+RATIONALE_ID: 32
+CONCEPTS: ["denial of legal assistance to witness", "right to legal assistance from onset of suspicion", "repeated questioning without counsel"]
+
+RATIONALE_ID: 33
+CONCEPTS: ["inadequate prison conditions for disabled detainee", "overcrowding insufficient personal space", "social isolation of prisoner with disability"]
+
+RATIONALE_ID: 34
+CONCEPTS: ["customs confiscation without clear legal basis", "proportionality of customs penalty"]
+
+RATIONALE_ID: 35
+CONCEPTS: ["repeated adjournments at plaintiff's request", "reasonable time of proceedings"]
+
+RATIONALE_ID: 36
+CONCEPTS: ["non-enforcement of domestic judgment", "writ of execution returned to applicant"]
+
+RATIONALE_ID: 37
+CONCEPTS: ["covert telephone interception authorisation", "broad surveillance order lacking specificity", "judicial authorisation of surveillance without sufficient reasoning"]
+
+RATIONALE_ID: 38
+CONCEPTS: ["lengthy criminal investigation into 1989 events", "investigation closure partly time-barred", "statute of limitations on mass human rights violations"]
+
+RATIONALE_ID: 39
+CONCEPTS: ["customs confiscation without clear legal basis", "customs fine for undeclared silver", "proportionality of customs penalty"]
+
+RATIONALE_ID: 40
+CONCEPTS: ["waiting period allowance disability benefit", "pension rights upon onset of disability", "retroactive application of pension legislation", "disability reclassification reducing benefit"]
+
+RATIONALE_ID: 41
+CONCEPTS: ["police ill-treatment with racial slur", "Roma victim of police brutality", "criminal complaint against police officers", "inadequate medical examination after ill-treatment"]
+
+RATIONALE_ID: 42
+CONCEPTS: ["mandatory time-limit not subject to extension", "national holiday effect on limitation period", "claim filed out of time"]
+
+RATIONALE_ID: 43
+CONCEPTS: ["covert telephone interception authorisation", "judicial authorisation of surveillance without sufficient reasoning", "bribery investigation as basis for surveillance"]
+
+RATIONALE_ID: 44
+CONCEPTS: ["lengthy criminal investigation", "time-barred prosecution of civil servants", "failure to investigate all responsible officials", "earthquake building collapse criminal liability"]
+
+RATIONALE_ID: 45
+CONCEPTS: ["online publication constituting defamation", "altered photograph posted to social media", "prior false criminal accusations relevant to context"]
+
+RATIONALE_ID: 46
+CONCEPTS: ["supervisory review quashing enforcement judgment", "enforcement of civil judgment"]
+
+RATIONALE_ID: 47
+CONCEPTS: ["police use of force during arrest", "inadequate investigation into police ill-treatment", "dismissal of ill-treatment complaint due to criminal record", "refusal to identify perpetrating officer"]
+
+RATIONALE_ID: 48
+CONCEPTS: ["third-instance final judgment", "reasonable time of proceedings"]
+
+RATIONALE_ID: 49
+CONCEPTS: ["pre-trial detention extension order", "continued detention pending investigation"]
+
+RATIONALE_ID: 50
+CONCEPTS: ["covert telephone interception authorisation", "broad surveillance order lacking specificity", "inadequate prison conditions overcrowding squalor"]
+
+RATIONALE_ID: 51
+CONCEPTS: ["victim's right to claim legal costs in criminal proceedings", "settlement procedure precluding victims' claims", "victim not allowed to address court"]
+
+RATIONALE_ID: 52
+CONCEPTS: ["police use of force at football match", "unidentified police officers at public event", "lack of individual identification on police uniforms", "pepper spray and truncheon use against spectators"]
+
+RATIONALE_ID: 53
+CONCEPTS: ["repeated adjournments at plaintiff's request", "reasonable time of proceedings", "adjournment due to increased claim amount"]
+
+RATIONALE_ID: 54
+CONCEPTS: ["time-barred prosecution of civil servants", "earthquake building collapse criminal liability", "failure to investigate all responsible officials", "suspended sentence for building safety violation"]
+
+RATIONALE_ID: 55
+CONCEPTS: ["non-enforcement of domestic judgment", "out-of-court settlement with government authority"]
+
+RATIONALE_ID: 56
+CONCEPTS: ["non-enforcement of Constitutional Court decision", "failure to comply with domestic court ruling"]
+
+RATIONALE_ID: 57
+CONCEPTS: ["medical negligence in emergency care", "delayed diagnosis causing death", "failure to perform mandatory autopsy", "inadequate investigation into hospital death"]
+
+RATIONALE_ID: 58
+CONCEPTS: ["politically motivated prosecution", "prejudicial statements by prosecuting authority violating presumption of innocence", "right to public trial denied", "ill-treatment to obtain statement at pre-trial stage"]
+
+RATIONALE_ID: 59
+CONCEPTS: ["suspicious death of state official", "inadequate investigation into death", "failure to consider homicide as alternative to suicide", "wiretapping linked to suspicious death"]
+
+RATIONALE_ID: 60
+CONCEPTS: ["death in police custody", "restraint technique causing death", "autopsy findings on cause of death", "ombudsman report finding inhuman treatment"]
+
+RATIONALE_ID: 61
+CONCEPTS: ["defamation of public official through newspaper article", "political criticism of local government", "satire of public official", "court award for defamation against newspaper"]
+
+RATIONALE_ID: 62
+CONCEPTS: ["eviction of social housing tenant", "right to respect for home", "proportionality of eviction order", "single mother on social housing waiting list"]
+
+RATIONALE_ID: 63
+CONCEPTS: ["non-enforcement of international child return order", "child abduction Hague Convention return order", "best interests of child as ground to refuse return", "passage of time frustrating enforcement"]
+
+RATIONALE_ID: 64
+CONCEPTS: ["in camera hearing without formal decision", "public trial right", "criminal trial closed to press"]
+
+RATIONALE_ID: 65
+CONCEPTS: ["medical negligence in prison healthcare", "failure to treat tuberculosis in prison", "drug-resistant tuberculosis inadequate treatment", "incomplete investigation into prison death"]
+
+RATIONALE_ID: 66
+CONCEPTS: ["review court deciding before applicant's comments received", "right to adversarial proceedings", "judicial error depriving party of right to respond"]
+
+RATIONALE_ID: 67
+CONCEPTS: ["police use of force during arrest", "fracture caused by police during arrest", "internal police investigation clearing officers", "denial of access to internal investigation report"]
+
+RATIONALE_ID: 68
+CONCEPTS: ["death in prison custody", "suspicious death of witness", "failure to investigate circumstances of death in custody"]
+
+RATIONALE_ID: 69
+CONCEPTS: ["pre-trial detention extension based on gravity of charges", "use of absent witness statements at trial", "right to examine witnesses", "jury trial length justifying continued detention"]
+
+RATIONALE_ID: 70
+CONCEPTS: ["covert video surveillance in university lecture hall", "surveillance of employees in workplace", "personal data protection violation", "privacy in professional working environment"]
+
+RATIONALE_ID: 71
+CONCEPTS: ["unlawful administrative detention", "failure to document grounds for detention", "inadequate investigation into unlawful detention", "arbitrary detention at police station"]
+
+RATIONALE_ID: 72
+CONCEPTS: ["entrapment by undercover agent", "bribery obtained through police sting operation", "mining licence overstep penalty"]
+
+RATIONALE_ID: 73
+CONCEPTS: ["overcrowded immigration detention cell", "inadequate conditions in immigration detention", "no ventilation in detention cell"]
+
+RATIONALE_ID: 74
+CONCEPTS: ["overcrowded police detention facility", "no heating or natural light in detention cell", "inadequate medical care in detention", "detainee sleeping on floor without bed"]
+
+RATIONALE_ID: 75
+CONCEPTS: ["refusal to interrupt sentence for terminal illness", "inadequate medical care for seriously ill prisoner", "cancer treatment unavailable in prison", "prosecution appeal against sentence interruption"]
+
+RATIONALE_ID: 76
+CONCEPTS: ["death from injuries inflicted in police custody", "police convicted of manslaughter", "acquittal on manslaughter due to insufficient evidence", "remittal for further investigation into death"]
+
+RATIONALE_ID: 77
+CONCEPTS: ["broadcasting sanction for commentary on public figure", "human dignity protection limiting freedom of expression", "positive attitude toward public figure's death as punishable speech"]
+
+RATIONALE_ID: 78
+CONCEPTS: ["pre-trial detention extension based on gravity of charges", "detention continued based on criminal record", "family separated from prisoner by remote penal colony placement"]
+
+RATIONALE_ID: 79
+CONCEPTS: ["house arrest extension for human rights activist", "risk of obstructing proceedings as basis for house arrest", "civil society activist as subject of detention order"]
+
+RATIONALE_ID: 80
+CONCEPTS: ["forensic medical evidence of police ill-treatment", "inadequate investigation into police ill-treatment", "refusal to accept alternative explanation for injuries"]
+
+RATIONALE_ID: 81
+CONCEPTS: ["reasonable time of proceedings in administrative matter", "veteran status recognition proceedings", "repeated remittal prolonging proceedings"]
+
+RATIONALE_ID: 82
+CONCEPTS: ["military pension discontinuation after state dissolution", "pension rights of military personnel following SFRY breakup", "cross-border pension payment dispute between successor states"]
+
+RATIONALE_ID: 83
+CONCEPTS: ["migration detention in inadequate conditions", "migrant family detained in squalid cell", "video evidence of detention cell conditions", "insults and degrading treatment of migrants on arrest"]
+
+RATIONALE_ID: 84
+CONCEPTS: ["repeated adjournments due to co-defendant's illness", "reasonable time of proceedings in criminal case", "judge recusal due to conflict of interest rules", "adjournment due to counsel vacation"]
+
+RATIONALE_ID: 85
+CONCEPTS: ["property restitution denied due to developed land exception", "inconsistent application of restitution criteria", "administrative court upholding restitution refusal"]
+
+RATIONALE_ID: 86
+CONCEPTS: ["access to personal personnel file refused", "classified information exception to data access rights", "bulk classification of file due to some classified documents", "judicial review of data access refusal"]
+
+RATIONALE_ID: 87
+CONCEPTS: ["property restitution claim for displaced person", "IPC claim for seized property in Northern Cyprus", "proof of ownership and heirship in restitution proceedings", "compensation for loss of use of property"]
+
+RATIONALE_ID: 88
+CONCEPTS: ["police use of force during arrest", "forensic medical evidence of police ill-treatment", "inadequate investigation into police ill-treatment", "repeated refusal to open criminal proceedings"]
+
+RATIONALE_ID: 89
+CONCEPTS: ["denial of lawyer access to detained client", "right of access to lawyer in detention"]
+
+RATIONALE_ID: 90
+CONCEPTS: ["unauthorised disclosure of HIV status by prosecutor", "disclosure of medical information to third party", "failure to prosecute for privacy violation by official"]
+
+RATIONALE_ID: 91
+CONCEPTS: ["testimony of witness with psychiatric disorder", "questionable reliability of witness with mental illness", "confession by co-accused implicating applicant", "admissibility of witness statement obtained in hospital"]
+
+RATIONALE_ID: 92
+CONCEPTS: ["eviction without provision of alternative housing", "rights of de facto family members to social tenancy", "eviction of long-term tenant without alternative accommodation"]
+
+RATIONALE_ID: 93
+CONCEPTS: ["refusal to register same-sex marriage contracted abroad", "non-recognition of same-sex marriage in domestic legal order", "same-sex marriage void for lack of opposite-sex requirement"]
+
+RATIONALE_ID: 94
+CONCEPTS: ["absent witnesses whose statements were read at trial", "right to examine witnesses", "use of pre-trial statements in lieu of trial testimony", "forged police report used as evidence"]
+
+RATIONALE_ID: 95
+CONCEPTS: ["medical negligence in hospital", "delayed diagnosis of post-operative meningitis", "mandatory autopsy not performed", "prosecution for homicide by gross negligence"]
+
+RATIONALE_ID: 96
+CONCEPTS: ["non-enforcement of domestic judgment", "enforcement proceedings terminated debt unrecoverable", "failure to comply with court order by state entity"]
+
+RATIONALE_ID: 97
+CONCEPTS: ["suspicious death at police station", "death by asphyxiation in police custody", "inadequate investigation into death in custody", "witness to screaming during detention"]
+
+RATIONALE_ID: 98
+CONCEPTS: ["torture by special anti-terrorist unit on arrest", "extensive injuries documented upon arrival at prison", "complaint to inspector general dismissed for lack of evidence", "public broadcast of arrested person showing injuries"]
+
+RATIONALE_ID: 99
+CONCEPTS: ["reasonable time of proceedings", "constitutional court finding of violation of reasonable time", "compensation for excessive length of proceedings"]
+
+RATIONALE_ID: 100
+CONCEPTS: ["conviction based on overall assessment without specifying evidence", "right to examine witnesses denied", "retraction of police confession at trial", "indictment naming uncharged person"]
+
+RATIONALE_ID: 101
+CONCEPTS: ["inadequate medical care for seriously ill prisoner", "failure to perform recommended diagnostic tests in prison", "progressive vascular disease untreated in prison", "palliative treatment instead of recommended surgery"]
+
+RATIONALE_ID: 102
+CONCEPTS: ["criminal investigation affecting bank licence", "presidential political interference in criminal investigation", "bank placed under temporary administration during proceedings", "shareholder standing to challenge corporate proceedings"]
+
+RATIONALE_ID: 103
+CONCEPTS: ["large-scale criminal investigation search of home", "access to lawyer delayed during police questioning", "simultaneous questioning of multiple suspects"]
+
+RATIONALE_ID: 104
+CONCEPTS: ["building permit on forest land", "legal fact establishing former buildings as basis for construction permit", "construction permit in protected forest zone"]
+
+RATIONALE_ID: 105
+CONCEPTS: ["covert video surveillance of employees", "settlement agreement signed under threat of criminal prosecution", "validity of waiver of rights under duress", "employer covert surveillance of suspected theft"]
+
+RATIONALE_ID: 106
+CONCEPTS: ["retrospective application of therapeutic detention measure", "post-conviction institutional therapeutic detention", "personality disorder diagnosis as basis for continued detention", "compatibility of retrospective measure with Article 7"]
+
+RATIONALE_ID: 107
+CONCEPTS: ["expulsion risk on return to country of origin", "risk of being labelled terrorist on return", "migration agency assessment of persecution risk", "lack of evidence of applicant being known to authorities"]
+
+RATIONALE_ID: 108
+CONCEPTS: ["classification of speech as verbal racism", "defamation through labelling speech as racist", "anti-discrimination organisation's right to comment on public speech", "mixed value judgment containing factual core"]
+
+RATIONALE_ID: 109
+CONCEPTS: ["detention order issued despite expiry of time-limit", "failure to release detainee when detention expired", "unlawful detention on prosecutor's instruction"]
+
+RATIONALE_ID: 110
+CONCEPTS: ["challenge for judicial bias refused", "connection between victim and judge as bias ground", "pre-trial detention extended by potentially biased judge"]
+
+RATIONALE_ID: 111
+CONCEPTS: ["police use of force during identity check", "police throwing person to ground and handcuffing", "forensic evidence of injuries from police contact", "internal investigation clearing officers of misconduct"]
+
+RATIONALE_ID: 112
+CONCEPTS: ["inadequate investigation into extrajudicial killing", "exhumation delayed by security concerns", "military obstructing prosecutor's access to area", "witnesses confirming victim taken by soldiers"]
+
+RATIONALE_ID: 113
+CONCEPTS: ["prosecution witness changing statement at trial", "antedating of official documents", "conviction based on forgery in office"]
+
+RATIONALE_ID: 114
+CONCEPTS: ["pre-trial detention justified by nature of offence without individualised grounds", "repeated extensions based on same formula", "refusal to state well-founded reasons for flight risk", "public figure detained pending investigation"]
+
+RATIONALE_ID: 115
+CONCEPTS: ["non-enforcement of expropriation compensation judgment", "refusal to accept alternative land offered by authority", "enforcement agency failing to compel compliance"]
+
+RATIONALE_ID: 116
+CONCEPTS: ["non-enforcement of reinstatement judgment", "failure to comply with reinstatement order by state entity", "partial payment of salary arrears pending full reinstatement"]
+
+RATIONALE_ID: 117
+CONCEPTS: ["lawyer sanctioned for criticising expert witness", "freedom of expression of lawyer in courtroom", "disciplinary proceedings against defence lawyer for courtroom speech", "criminal defence involving challenge to expert evidence"]
+
+RATIONALE_ID: 118
+CONCEPTS: ["excessive environmental noise from nightlife", "persistent exceedance of permitted noise levels", "municipal failure to enforce noise ordinance"]
+
+RATIONALE_ID: 119
+CONCEPTS: ["frozen embryos seized as evidence in criminal proceedings", "inability to retrieve embryos from unauthorised facility", "regulatory refusal to approve transfer of embryos", "seizure of genetic material in criminal investigation"]
+
+RATIONALE_ID: 120
+CONCEPTS: ["non-enforcement of international child return order", "child abduction Hague Convention return order", "Brussels II bis enforcement of custody order", "conflicting custody judgments in different states"]
+
+RATIONALE_ID: 121
+CONCEPTS: ["reasonable time of proceedings", "compensation for excessive length of proceedings", "DNA sample taken without authority"]
+
+RATIONALE_ID: 122
+CONCEPTS: ["defamation of public official through newspaper article", "political criticism of local administrator", "criminal defamation proceedings against journalist or newspaper"]
+
+RATIONALE_ID: 123
+CONCEPTS: ["eviction of social housing tenant", "right to respect for home", "proportionality of eviction order", "no alternative housing for evicted tenant"]
+
+RATIONALE_ID: 124
+CONCEPTS: ["non-enforcement of international child return order", "child's best interests defeating return order", "passage of time frustrating enforcement", "Slovak courts refusing enforcement of Irish order"]
+
+RATIONALE_ID: 125
+CONCEPTS: ["public trial right", "in camera hearing without formal decision"]
+
+RATIONALE_ID: 126
+CONCEPTS: ["medical negligence in prison healthcare", "failure to treat tuberculosis in prison", "inadequate investigation into prison death"]
+
+RATIONALE_ID: 127
+CONCEPTS: ["review court deciding before applicant's comments received", "right to adversarial proceedings"]
+
+RATIONALE_ID: 128
+CONCEPTS: ["police use of force during arrest", "fracture caused by police during arrest", "denial of access to internal investigation report", "internal police investigation clearing officers"]
+
+RATIONALE_ID: 129
+CONCEPTS: ["pre-trial detention extension based on gravity of charges", "use of absent witness statements at trial", "right to examine witnesses"]
+
+RATIONALE_ID: 130
+CONCEPTS: ["covert video surveillance in university lecture hall", "personal data protection violation", "surveillance of employees in workplace"]
+
+RATIONALE_ID: 131
+CONCEPTS: ["unlawful administrative detention", "arbitrary detention at police station", "failure to document grounds for detention"]
+
+RATIONALE_ID: 132
+CONCEPTS: ["entrapment by undercover agent", "bribery obtained through police sting operation"]
+
+RATIONALE_ID: 133
+CONCEPTS: ["overcrowded immigration detention cell", "inadequate conditions in immigration detention"]
+
+RATIONALE_ID: 134
+CONCEPTS: ["overcrowded police detention facility", "no heating or natural light in detention cell", "inadequate medical care in detention"]
+
+RATIONALE_ID: 135
+CONCEPTS: ["refusal to interrupt sentence for terminal illness", "inadequate medical care for seriously ill prisoner", "prosecution appeal against sentence interruption"]
+
+RATIONALE_ID: 136
+CONCEPTS: ["death from injuries inflicted in police custody", "remittal for further investigation into death"]
+
+RATIONALE_ID: 137
+CONCEPTS: ["broadcasting sanction for commentary on public figure", "human dignity protection limiting freedom of expression"]
+
+RATIONALE_ID: 138
+CONCEPTS: ["pre-trial detention extension based on gravity of charges", "family separated from prisoner by remote penal colony placement"]
+
+RATIONALE_ID: 139
+CONCEPTS: ["house arrest extension for civil society activist", "risk of obstructing proceedings as basis for house arrest"]
+
+RATIONALE_ID: 140
+CONCEPTS: ["forensic medical evidence of police ill-treatment", "inadequate investigation into police ill-treatment"]
+
+RATIONALE_ID: 141
+CONCEPTS: ["reasonable time of proceedings in administrative matter", "repeated remittal prolonging proceedings"]
+
+RATIONALE_ID: 142
+CONCEPTS: ["military pension discontinuation after state dissolution", "pension rights of military personnel following SFRY breakup"]
+
+RATIONALE_ID: 143
+CONCEPTS: ["reasonable time of civil proceedings", "repeated adjournments at plaintiff's request", "representation of multiple co-plaintiffs by single representative"]
+
+RATIONALE_ID: 144
+CONCEPTS: ["pre-trial detention extension based on gravity of charges", "repeated extensions based on same formula", "bail application rejected multiple times", "health grounds for release rejected"]
+
+RATIONALE_ID: 145
+CONCEPTS: ["psychiatric detention without judicial decision", "involuntary psychiatric detention unlawful", "lack of judicial review of psychiatric detention lawfulness"]
+
+RATIONALE_ID: 146
+CONCEPTS: ["eviction of de facto partner from social tenancy", "right to respect for home", "long-term cohabitation as basis for tenancy rights", "eviction without alternative housing for person on housing list"]
+
+RATIONALE_ID: 147
+CONCEPTS: ["pre-trial detention with bail initially granted then revoked", "pressure on witnesses as basis for re-detention", "obstruction of justice as ground for pre-trial detention", "detention of local official accused of abuse of office"]
+
+RATIONALE_ID: 148
+CONCEPTS: ["court power to reduce lawyer's fees in judgment", "legal costs award reduced on appeal", "prior judgment on same issue reopened"]
+
+RATIONALE_ID: 149
+CONCEPTS: ["reasonable time of civil proceedings", "personality rights claim against state", "length of compensation proceedings"]
+
+RATIONALE_ID: 150
+CONCEPTS: ["defamation of public official through newspaper article", "criminal defamation proceedings against politician", "decriminalisation of defamation urged by PACE"]
+
+RATIONALE_ID: 151
+CONCEPTS: ["pre-trial detention justified by risk of absconding", "pre-trial detention of accused in financial crime", "organised criminal group as basis for extended detention", "managerial authority as flight risk factor"]
+
+RATIONALE_ID: 152
+CONCEPTS: ["administrative detention in inadequate conditions", "no outdoor exercise except for brief period", "inadequate sanitary facilities in detention", "cold food served in cell without tables"]
+
+RATIONALE_ID: 153
+CONCEPTS: ["journalist arrested at political demonstration", "police fabrication of administrative offence record", "denial of lawyer access during administrative detention", "arbitrary police account of events contradicted by witnesses"]
+
+RATIONALE_ID: 154
+CONCEPTS: ["pre-trial detention of minor accused", "recantation as basis for continued detention", "denial of family visits to detained minor", "gravity of charge justifying custodial measure for youth"]
+
+RATIONALE_ID: 155
+CONCEPTS: ["terrorism propaganda charges based on slogans chanted at demonstration", "criminal prosecution for participation in demonstration expressing support for organisation"]
+
+RATIONALE_ID: 156
+CONCEPTS: ["customs search of personal electronic devices", "copying of laptop data at border customs inspection", "anti-extremism decree as basis for data seizure"]
+
+RATIONALE_ID: 157
+CONCEPTS: ["property taken for public use without adequate compensation", "partial return of unused expropriated land", "expropriated land used commercially by third party"]
+
+RATIONALE_ID: 158
+CONCEPTS: ["juvenile convicted based on confession and reconstruction", "ill-treatment alleged at police custody stage", "request for additional forensic report denied by court"]
+
+RATIONALE_ID: 159
+CONCEPTS: ["pre-trial detention found unreasonably long on appeal", "bail granted after excessive pre-trial detention", "restrictions on family visits during investigation"]
+
+RATIONALE_ID: 160
+CONCEPTS: ["broadcasting of secretly recorded footage", "sanction for broadcasting covertly obtained images", "journalistic interest insufficient to justify secret recording broadcast", "public figure right to privacy in broadcast"]
+
+RATIONALE_ID: 161
+CONCEPTS: ["reasonable time of civil proceedings", "reinstatement claim following dismissal", "repeated remittal prolonging proceedings"]
+
+RATIONALE_ID: 162
+CONCEPTS: ["requisition of property for public use", "disproportionate requisition with reduced compensation", "constitutional court adjusting compensation amount", "social and cultural purpose of requisition"]
+
+RATIONALE_ID: 163
+CONCEPTS: ["involuntary psychiatric hospitalisation", "compulsory psychiatric treatment at parents' request", "series of psychiatric hospitalisations over years", "religious sect involvement preceding psychiatric crisis"]
+
+RATIONALE_ID: 164
+CONCEPTS: ["arrest for protest performance at war memorial", "symbolic protest criminalised", "suspended prison sentence for desecration of memorial", "political performance art as criminal offence"]
+
+RATIONALE_ID: 165
+CONCEPTS: ["police ill-treatment during police questioning", "injuries documented in medical report after questioning", "police officer filed report denying ill-treatment", "forensic medical examination after return to prison"]
+
+RATIONALE_ID: 166
+CONCEPTS: ["reinstatement ordered after earlier ECHR judgment", "dismissal of reinstated employee pursuant to new head's authority", "non-compliance with ECHR judgment", "Committee of Ministers supervising judgment execution"]
+
+RATIONALE_ID: 167
+CONCEPTS: ["covert telephone interception authorisation", "evidence from secret surveillance used in conviction", "challenge to lawfulness of surveillance orders during trial", "judicial authorisation of surveillance without sufficient reasoning"]
+
+RATIONALE_ID: 168
+CONCEPTS: ["reasonable time of civil proceedings", "quashing and remittal by appeal court"]
+
+RATIONALE_ID: 169
+CONCEPTS: ["challenge for judicial bias refused", "applicant's history of unfavourable rulings as bias ground", "bias challenge based on corporate solidarity among judges"]
+
+RATIONALE_ID: 170
+CONCEPTS: ["confession obtained under physical duress", "police questioning without lawyer in custody", "multiple separate criminal proceedings against same person"]
+
+RATIONALE_ID: 171
+CONCEPTS: ["inadequate medical diet in prison", "prison refusal to provide medically prescribed diet", "judicial oversight of prison conditions", "medical board recommendation overruled by prison authorities"]
+
+RATIONALE_ID: 172
+CONCEPTS: ["competitive tender evaluation with conflicting interests", "evaluator bias in public research funding", "right to fair hearing in administrative funding decision", "oral hearing denied in administrative proceedings"]
+
+RATIONALE_ID: 173
+CONCEPTS: ["police use of force during arrest causing serious injury", "unlawful detention following arrest based on false information", "acquittal after years of criminal proceedings", "criminal prosecution discontinued for absence of corpus delicti"]
+
+RATIONALE_ID: 174
+CONCEPTS: ["fixed-term employment contract deemed expired", "claim for open-ended contract time-barred", "time-limit for employment rights claim"]
+
+RATIONALE_ID: 175
+CONCEPTS: ["reasonable time of civil proceedings", "work-related disability pension compensation proceedings"]
+
+RATIONALE_ID: 176
+CONCEPTS: ["reasonable time of civil proceedings", "commercial court proceedings excessive length"]
+
+RATIONALE_ID: 177
+CONCEPTS: ["journalist detained for articles and statements", "pre-trial detention creating chilling effect on press freedom", "pre-trial detention of journalist not based on concrete evidence", "constitutional court finding violation of press freedom due to detention"]
+
+RATIONALE_ID: 178
+CONCEPTS: ["reasonable time of civil proceedings", "compensation under domestic compensation act for excessive length"]
+
+RATIONALE_ID: 179
+CONCEPTS: ["journalist detained for articles and statements", "pre-trial detention creating chilling effect on press freedom", "constitutional court finding violation of press freedom due to detention"]
+
+RATIONALE_ID: 180
+CONCEPTS: ["political speech by party leader about police investigation", "disclosure of anonymous threatening communications", "freedom of expression of politician at public rally"]
+
+RATIONALE_ID: 181
+CONCEPTS: ["police officer assault on civilian while off duty", "injury to applicant's wife by intoxicated police officer", "failure to investigate misconduct of police officer"]
+
+RATIONALE_ID: 182
+CONCEPTS: ["overcrowded prison conditions", "no in-cell toilet requiring use of bottle or bag", "inadequate personal space in prison cell"]
+
+RATIONALE_ID: 183
+CONCEPTS: ["overcrowded prison conditions", "inadequate sanitary facilities in detention", "administrative detention in inadequate conditions"]
+
+RATIONALE_ID: 184
+CONCEPTS: ["unlawful administrative arrest after administrative-offence record compiled", "civil proceedings to seek compensation for unlawful arrest dismissed", "court refusing to assess lawfulness of arrest in civil proceedings"]
+
+RATIONALE_ID: 185
+CONCEPTS: ["refugee status refusal and expulsion order", "Dublin II Regulation transfer back to Poland", "detention of family with children in immigration centre", "immigration detention conditions for families"]
+
+RATIONALE_ID: 186
+CONCEPTS: ["investigator transferring seized property to third party", "compensation for property seized and transferred by investigator", "criminal proceedings against investigator not opened due to threshold"]
+
+RATIONALE_ID: 187
+CONCEPTS: ["child custody proceedings in Russia", "residence order granted to father despite absence of application", "best interests of child in parental residence dispute", "childcare authority report favouring father"]
+
+RATIONALE_ID: 188
+CONCEPTS: ["pre-trial detention extension where time-limit about to expire", "insufficient time to review prosecution file before hearing", "right to confidential communication with lawyer before detention hearing"]
+
+RATIONALE_ID: 189
+CONCEPTS: ["arrest at solo political picket", "administrative detention at public demonstration", "discrepancy in police records of arrest time"]
+
+RATIONALE_ID: 190
+CONCEPTS: ["guardianship of child deprived of parental care", "cross-border guardianship application", "child placed in orphanage multiple times due to parental neglect"]
+
+RATIONALE_ID: 191
+CONCEPTS: ["detention in courtroom metal cages", "defendants held in cages during trial", "physical barrier between defendants and counsel at trial"]
+
+RATIONALE_ID: 192
+CONCEPTS: ["lawyer's post-verdict comments to press as disciplinary offence", "disciplinary acquittal for comments at courthouse exit", "freedom of expression of lawyer commenting on verdict"]
+
+RATIONALE_ID: 193
+CONCEPTS: ["NGO head arrested on charges of illegal entrepreneurship and tax evasion", "pre-trial detention justified by gravity of charges", "foreign ties as flight risk factor in detention order", "politically motivated prosecution of civil society leader"]
+
+RATIONALE_ID: 194
+CONCEPTS: ["bar association refusing admission to applicant who criticised it", "monopoly bar association denying membership", "right to practise law conditioned on bar association membership"]
+
+RATIONALE_ID: 195
+CONCEPTS: ["arrest at solo political picket", "administrative detention at public demonstration", "discrepancy in police records of arrest time"]
+
+RATIONALE_ID: 196
+CONCEPTS: ["guardianship of child deprived of parental care", "cross-border guardianship application", "child placed in orphanage multiple times due to parental neglect"]
+
+RATIONALE_ID: 197
+CONCEPTS: ["detention in courtroom metal cages", "defendants held in cages during trial", "physical barrier between defendants and counsel at trial", "prolonged trial with hearings continuing into evening"]
+
+RATIONALE_ID: 198
+CONCEPTS: ["lawyer's post-verdict comments to press as disciplinary offence", "disciplinary acquittal for comments at courthouse exit", "freedom of expression of lawyer commenting on verdict", "racial and social inequality critique in post-verdict statement"]
+
+RATIONALE_ID: 199
+CONCEPTS: ["NGO head arrested on charges of illegal entrepreneurship and tax evasion", "pre-trial detention justified by gravity of charges", "foreign ties as flight risk factor in detention order", "politically motivated prosecution of civil society leader"]
+
+RATIONALE_ID: 200
+CONCEPTS: ["bar association refusing admission to applicant who criticised it", "monopoly bar association denying membership", "right to practise law conditioned on bar association membership", "bar association Presidium interrogating applicant about criticism before rejecting application"]

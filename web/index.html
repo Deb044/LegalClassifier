@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BDH Interpretability Explorer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #030712;
+      color: #e2e8f0;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #0f172a, #1e1b4b, #0f172a);
+      border-bottom: 1px solid #1e293b;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #f59e0b, #ef4444);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: #030712;
+    }
+
+    .header h1 {
+      font-size: 20px;
+      background: linear-gradient(90deg, #f59e0b, #ef4444, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header p {
+      font-size: 11px;
+      color: #64748b;
+      letter-spacing: 1px;
+    }
+
+    .tabs {
+      display: flex;
+      background: #0f172a;
+      border-bottom: 1px solid #1e293b;
+      padding: 0 24px;
+    }
+
+    .tab {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 12px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: inherit;
+      color: #64748b;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .tab.active {
+      color: #f59e0b;
+      border-bottom-color: #f59e0b;
+    }
+
+    .tab:hover {
+      color: #e2e8f0;
+    }
+
+    .content {
+      padding: 20px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      border-radius: 12px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge-sm {
+      padding: 2px 8px;
+      font-size: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 12px;
+      color: #e2e8f0;
+      font-size: 12px;
+      resize: vertical;
+      font-family: inherit;
+      line-height: 1.6;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #f59e0b, #ef4444);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 24px;
+      color: #030712;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: wait;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-box .num {
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .stat-box .label {
+      font-size: 10px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .neuron-bar {
+      display: flex;
+      align-items: flex-end;
+      gap: 1px;
+      height: 120px;
+    }
+
+    .neuron-bar div {
+      flex: 1;
+      min-width: 3px;
+      max-width: 14px;
+      border-radius: 2px 2px 0 0;
+      transition: all 0.3s;
+    }
+
+    .concept-tag {
+      font-size: 11px;
+      padding: 4px 0 4px 12px;
+      border-left: 2px solid #f59e0b44;
+      margin-bottom: 2px;
+      color: #94a3b8;
+    }
+
+    .case-btn {
+      background: transparent;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      color: #e2e8f0;
+      font-size: 11px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+
+    .case-btn:hover,
+    .case-btn.active {
+      background: #1e293b;
+      border-color: #f59e0b;
+    }
+
+    .loading {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #334155;
+      border-top-color: #f59e0b;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      margin-right: 8px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .footer {
+      padding: 16px 24px;
+      border-top: 1px solid #1e293b;
+      text-align: center;
+      font-size: 10px;
+      color: #475569;
+    }
+
+    .error-banner {
+      background: #7f1d1d;
+      border: 1px solid #ef4444;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+      color: #fca5a5;
+      font-size: 12px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .status-dot.ok {
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e88;
+    }
+
+    .status-dot.err {
+      background: #ef4444;
+      box-shadow: 0 0 6px #ef444488;
+    }
+
+    .heatmap-cell {
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      display: inline-block;
+      margin: 1px;
+      transition: all 0.2s;
+    }
+
+    .sparsity-ring {
+      position: relative;
+    }
+
+    .sparsity-ring .label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    canvas {
+      border-radius: 8px;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="logo">B</div>
+    <div>
+      <h1>BDH Interpretability Explorer</h1>
+      <p>ECHR VIOLATION CLASSIFIER · SPARSE NEURON ANALYSIS · 16,384 NEURONS · 7 ARTICLES</p>
+    </div>
+    <div style="margin-left:auto; display:flex; align-items:center; gap:12px;">
+      <span id="server-status" class="status-dot err" title="Connecting..."></span>
+      <span id="server-label" style="font-size:10px; color:#64748b;">Connecting...</span>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="analyze" onclick="switchTab('analyze')">Analyze Case</button>
+    <button class="tab" data-tab="network" onclick="switchTab('network')">Network Graph</button>
+    <button class="tab" data-tab="explore" onclick="switchTab('explore')">Explore Examples</button>
+    <button class="tab" data-tab="concepts" onclick="switchTab('concepts')">Concept Index</button>
+    <button class="tab" data-tab="architecture" onclick="switchTab('architecture')">Architecture</button>
+  </div>
+
+  <div class="content">
+
+    <div id="error-box" class="error-banner hidden"></div>
+
+    <div id="tab-analyze">
+      <div class="card">
+        <h3 style="color:#f59e0b">Input Court Case Text</h3>
+        <textarea id="case-input" placeholder="Paste a court case here..."></textarea>
+        <div style="display:flex; gap:12px; margin-top:12px; align-items:center;">
+          <button class="btn-primary" id="analyze-btn" onclick="runAnalysis()">▶ Analyze with BDH</button>
+          <span id="analyze-status" style="font-size:11px; color:#64748b;"></span>
+        </div>
+      </div>
+
+      <div id="results" class="hidden">
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="color:#ef4444">Predicted Violations</h3>
+            <div id="predictions"></div>
+            <h4 style="margin:16px 0 8px; font-size:12px; color:#64748b;">Mapped Legal Concepts</h4>
+            <div id="concepts-list"></div>
+          </div>
+
+          <div class="card">
+            <h3 style="color:#f59e0b">Neuron Activation Profile</h3>
+            <div id="activation-bars" class="neuron-bar"></div>
+            <div style="display:flex; gap:16px; margin-top:16px; align-items:center;">
+              <div id="sparsity-display" style="text-align:center;"></div>
+              <div id="activation-stats" style="font-size:11px; color:#64748b;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="color:#3b82f6">Sparse Neuron Grid (128×128 = 16,384 neurons)</h3>
+          <div style="display:flex; gap:24px; align-items:center;">
+            <canvas id="neuron-grid" width="256" height="256" style="width:256px; height:256px;"></canvas>
+            <div>
+              <div id="grid-stats" style="font-size:12px; color:#94a3b8; line-height:2;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="per-layer-section" class="card hidden">
+          <h3 style="color:#22c55e">Layer-by-Layer Sparsity Evolution</h3>
+          <div id="per-layer-content"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-network" class="hidden">
+      <div class="card" style="padding:12px 20px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <h3 style="color:#a855f7; margin:0;">Interactive Neural Network Graph</h3>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span style="font-size:10px; color:#64748b;">Select a case to visualize activations:</span>
+            <select id="network-case-select" onchange="onNetworkCaseChange()"
+              style="background:#1e293b; border:1px solid #334155; border-radius:6px; padding:4px 8px; color:#e2e8f0; font-size:11px; font-family:inherit;">
+              <option value="">— idle (no activations) —</option>
+            </select>
+            <button class="btn-primary" style="padding:6px 14px; font-size:11px;" onclick="animateNetworkPulse()">▶
+              Pulse</button>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="padding:0; overflow-x:scroll; overflow-y:hidden; position:relative;">
+        <canvas id="network-canvas" width="1400" height="700"
+          style="width:100%; height:700px; display:block; cursor:crosshair; min-width:900px;"></canvas>
+        <div id="network-tooltip"
+          style="display:none; position:absolute; background:#1e293b; border:1px solid #f59e0b88; border-radius:8px; padding:10px 14px; font-size:11px; pointer-events:none; z-index:10; max-width:320px; box-shadow:0 8px 32px rgba(0,0,0,0.5);">
+        </div>
+      </div>
+      <div class="grid-3" style="margin-top:16px;">
+        <div class="card" style="text-align:center;">
+          <div style="font-size:10px; color:#64748b;">Total Nodes</div>
+          <div id="net-stat-nodes" style="font-size:24px; font-weight:800; color:#a855f7;">—</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:10px; color:#64748b;">Total Edges</div>
+          <div id="net-stat-edges" style="font-size:24px; font-weight:800; color:#f59e0b;">—</div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div style="font-size:10px; color:#64748b;">Active Edges (this case)</div>
+          <div id="net-stat-active" style="font-size:24px; font-weight:800; color:#22c55e;">—</div>
+        </div>
+      </div>
+      <div class="card" style="font-size:11px; color:#64748b; line-height:1.8;">
+        <strong style="color:#e2e8f0;">How to read this graph:</strong>
+        Each column is a layer of the BDH architecture. Nodes represent neuron groups (sampled from 16,384 total).
+        Edges connect neurons across layers. <strong style="color:#f59e0b;">Hover any edge or node</strong> to see its
+        activation weight and mapped text concepts.
+        <strong style="color:#22c55e;">Green/amber</strong> edges = active signal flow.
+        <strong style="color:#334155;">Dark</strong> edges = inactive (zero after ReLU) ensuring extreme sparsity.
+        Select a case to see which reasoning pathways light up.
+        <br>
+        <span style="color:#a855f7;">●</span> Concept nodes &nbsp;
+        <span style="color:#f59e0b;">●</span> Sparse neurons &nbsp;
+        <span style="color:#3b82f6;">●</span> Hidden neurons &nbsp;
+        <span style="color:#22c55e;">●</span> Output heads &nbsp;
+        <span style="color:#ef4444;">●</span> Active &nbsp;
+      </div>
+    </div>
+
+    <div id="tab-explore" class="hidden">
+      <div class="card">
+        <h3 style="color:#3b82f6">Pre-Extracted Example Cases (from test set)</h3>
+        <p style="font-size:11px; color:#64748b; margin-bottom:12px;">Click any case to see its neuron activations and
+          concept mapping.</p>
+        <div id="example-cases" style="display:flex; gap:8px; flex-wrap:wrap;"></div>
+      </div>
+      <div id="example-detail" class="hidden"></div>
+    </div>
+
+    <div id="tab-concepts" class="hidden">
+      <div class="card">
+        <h3 style="color:#a855f7">Concept Co-Activation Index</h3>
+        <p style="font-size:11px; color:#64748b; margin-bottom:12px;">
+          Shows which neurons co-activate with each legal concept across the test set.
+          Higher counts = stronger neuron→concept association.
+        </p>
+        <div id="concept-index-content">
+          <p style="color:#64748b; font-size:12px;">Loading concept index from server...</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-architecture" class="hidden">
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color:#f59e0b">BDH Architecture Flow</h3>
+          <div id="arch-diagram"></div>
+        </div>
+        <div class="card">
+          <h3 style="color:#f59e0b">Model Info</h3>
+          <div id="model-info-content">
+            <p style="color:#64748b; font-size:12px;">Loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    BDH Architecture · ECHR Violation Classifier · Kriti 2026 
+  </div>
+
+  <script>
+    const API = 'http://localhost:7860/api';
+
+    const ARTICLE_COLORS = {
+      "2": "#ef4444", "3": "#f97316", "5": "#eab308", "6": "#22c55e",
+      "8": "#3b82f6", "10": "#a855f7", "P1-1": "#ec4899", "34": "#14b8a6"
+    };
+    const ARTICLE_NAMES = {
+      "2": "Right to Life", "3": "Prohibition of Torture", "5": "Right to Liberty",
+      "6": "Right to Fair Trial", "8": "Right to Private Life", "10": "Freedom of Expression",
+      "P1-1": "Protection of Property", "34": "Right of Individual Petition"
+    };
+
+    let exampleRecords = [];
+
+    async function api(path, opts = {}) {
+      const res = await fetch(API + path, {
+        headers: { 'Content-Type': 'application/json' },
+        ...opts
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}: ${await res.text()}`);
+      return res.json();
+    }
+
+    async function checkHealth() {
+      try {
+        const data = await api('/health');
+        document.getElementById('server-status').className = 'status-dot ok';
+        document.getElementById('server-label').textContent = `Connected · ${data.device}`;
+        document.getElementById('error-box').classList.add('hidden');
+        return true;
+      } catch (e) {
+        document.getElementById('server-status').className = 'status-dot err';
+        document.getElementById('server-label').textContent = 'Disconnected';
+        showError(`Cannot reach server at ${API}. Make sure serve.py is running: python serve.py`);
+        return false;
+      }
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('error-box');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+    }
+
+    function switchTab(id) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === id));
+      ['analyze', 'network', 'explore', 'concepts', 'architecture'].forEach(t => {
+        document.getElementById('tab-' + t).classList.toggle('hidden', t !== id);
+      });
+      if (id === 'network' && !networkInitialized) {
+        initNetworkGraph();
+        networkInitialized = true;
+      }
+    }
+
+    async function runAnalysis() {
+      const text = document.getElementById('case-input').value.trim();
+      if (!text) return;
+
+      const btn = document.getElementById('analyze-btn');
+      const status = document.getElementById('analyze-status');
+      btn.disabled = true;
+      status.innerHTML = '<span class="loading"></span>Running inference...';
+
+      try {
+        const data = await api('/predict', {
+          method: 'POST',
+          body: JSON.stringify({
+            text: text,
+            return_activations: true,
+            return_concepts: true,
+          })
+        });
+
+        renderResults(data);
+        document.getElementById('results').classList.remove('hidden');
+        status.textContent = '✓ Done';
+      } catch (e) {
+        showError('Analysis failed: ' + e.message);
+        status.textContent = '✗ Failed';
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    function renderResults(data) {
+
+      const predEl = document.getElementById('predictions');
+      predEl.innerHTML = data.predicted_articles
+        .filter(a => a.predicted)
+        .map(a => `
+      <span class="badge" style="background:${ARTICLE_COLORS[a.article]}22; border:1px solid ${ARTICLE_COLORS[a.article]}55; color:${ARTICLE_COLORS[a.article]}; margin:0 4px 4px 0;">
+        Art. ${a.article} — ${a.name} <span style="opacity:0.6; margin-left:4px;">${(a.probability * 100).toFixed(1)}%</span>
+      </span>
+    `).join('');
+
+      predEl.innerHTML += '<div style="margin-top:12px;">' +
+        data.predicted_articles.map(a => `
+      <div style="display:flex; align-items:center; gap:8px; margin:4px 0;">
+        <span style="font-size:10px; color:${ARTICLE_COLORS[a.article]}; width:50px;">Art. ${a.article}</span>
+        <div style="flex:1; height:8px; background:#1e293b; border-radius:4px; overflow:hidden;">
+          <div style="width:${a.probability * 100}%; height:100%; background:${ARTICLE_COLORS[a.article]}; border-radius:4px; transition: width 0.5s;"></div>
+        </div>
+        <span style="font-size:10px; color:#64748b; width:40px; text-align:right;">${(a.probability * 100).toFixed(1)}%</span>
+        <span style="font-size:10px; width:12px;">${a.predicted ? '✓' : ''}</span>
+      </div>
+    `).join('') + '</div>';
+
+      const conceptsEl = document.getElementById('concepts-list');
+      if (data.concepts && data.concepts.length > 0) {
+        conceptsEl.innerHTML = data.concepts.map((c, i) => `
+      <div class="concept-tag" style="border-left-color: ${i < 3 ? '#f59e0b' : '#334155'}">
+        <strong>${c.concept}</strong>
+        <span style="color:#64748b; margin-left:8px;">score: ${c.score} · freq: ${c.corpus_frequency}</span>
+      </div>
+    `).join('');
+      } else {
+        conceptsEl.innerHTML = '<p style="font-size:11px; color:#64748b;">No concepts mapped for active neurons.</p>';
+      }
+
+      if (data.activations) {
+        const acts = data.activations;
+        const maxAct = Math.max(...acts.neuron_act_values);
+        const barsEl = document.getElementById('activation-bars');
+        barsEl.innerHTML = acts.active_neurons.map((nid, i) => {
+          const h = (acts.neuron_act_values[i] / maxAct) * 100;
+          return `<div title="Neuron ${nid}: ${acts.neuron_act_values[i].toFixed(4)}" style="height:${h}%; background:linear-gradient(to top, #f59e0b, #ef4444);"></div>`;
+        }).join('');
+
+        document.getElementById('sparsity-display').innerHTML = `
+      <div style="font-size:28px; font-weight:800; color:#f59e0b;">${(acts.sparsity * 100).toFixed(2)}%</div>
+      <div style="font-size:10px; color:#64748b;">active</div>
+    `;
+        document.getElementById('activation-stats').innerHTML = `
+      <div><span style="color:#f59e0b; font-weight:700;">${(acts.sparsity * 16384).toFixed(0)}</span> neurons active out of <span style="color:#3b82f6;">16,384</span></div>
+      <div style="margin-top:4px;"></div>
+    `;
+
+        drawNeuronGrid(acts.active_neurons);
+
+        document.getElementById('grid-stats').innerHTML = `
+      Each pixel = 1 neuron<br>
+      <span style="color:#f59e0b;">■</span> Amber = active (${(acts.sparsity * 16384).toFixed(0)})<br>
+      <span style="color:#0f172a; text-shadow: 0 0 1px #64748b;">■</span> Dark = inactive (${16384 - (acts.sparsity * 16384).toFixed(0)})<br>
+      Sparsity: ${(acts.sparsity * 100).toFixed(4)}%
+    `;
+
+        window.liveCaseRecord = {
+          id: 'Live Input',
+          active_neurons: acts.active_neurons,
+          neuron_act_values: acts.neuron_act_values,
+          predicted_labels: data.predicted_articles.filter(a => a.predicted).map(a => a.article),
+          concepts: data.concepts ? data.concepts.map(c => c.concept) : []
+        };
+
+        const sel = document.getElementById('network-case-select');
+        let opt = document.getElementById('live-case-opt');
+        if (!opt) {
+          opt = document.createElement('option');
+          opt.id = 'live-case-opt';
+          opt.value = 'live';
+          sel.prepend(opt);
+        }
+        opt.textContent = `LIVE INPUT: ${window.liveCaseRecord.predicted_labels.map(a => 'Art.' + a).join('+') || 'No Violation'}`;
+        sel.value = 'live';
+
+        if (networkInitialized) {
+          onNetworkCaseChange();
+        }
+      }
+
+      if (data.per_layer && data.per_layer.length > 0) {
+        document.getElementById('per-layer-section').classList.remove('hidden');
+        const maxActive = Math.max(...data.per_layer.map(l => l.total_active));
+        document.getElementById('per-layer-content').innerHTML = `
+      <div style="display:flex; align-items:flex-end; gap:16px; height:120px; margin-top:12px;">
+        ${data.per_layer.map(l => `
+          <div style="flex:1; text-align:center;">
+            <div style="height:${(l.total_active / maxActive) * 100}px; background:linear-gradient(to top, #22c55e, #3b82f6); border-radius:4px 4px 0 0; margin:0 auto; width:40px;"></div>
+            <div style="font-size:10px; color:#64748b; margin-top:4px;">L${l.layer}</div>
+            <div style="font-size:10px; color:#22c55e;">${l.total_active}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div style="font-size:10px; color:#64748b; margin-top:8px;">Active neuron count per BDH layer (shared weights, 6 passes)</div>
+    `;
+      }
+    }
+
+    function drawNeuronGrid(activeNeurons) {
+      const canvas = document.getElementById('neuron-grid');
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, 256, 256);
+
+      const cellsPerRow = 128;
+      const cellSize = 256 / cellsPerRow;
+      const activeSet = new Set(activeNeurons);
+
+      for (const nid of activeNeurons) {
+        const row = Math.floor(nid / cellsPerRow);
+        const col = nid % cellsPerRow;
+        ctx.fillStyle = '#f59e0b';
+        ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+      }
+    }
+
+    async function loadExamples() {
+      try {
+        const res = await fetch('example_records.json');
+        if (!res.ok) throw new Error('Could not load example_records.json');
+        exampleRecords = await res.json();
+        renderExampleList();
+        if (document.getElementById('network-case-select')) {
+          populateNetworkCaseSelector();
+        }
+      } catch (e) {
+        document.getElementById('example-cases').innerHTML =
+          `<p style="color:#64748b; font-size:12px;">Place example_records.json alongside index.html to browse pre-extracted cases.</p>`;
+      }
+    }
+
+    function renderExampleList() {
+      const el = document.getElementById('example-cases');
+      el.innerHTML = exampleRecords.slice(0, 40).map((r, i) => {
+        const violated = r.violated_articles || r.violated || [];
+        const predicted = r.predicted_labels || r.predicted || [];
+        const correct = JSON.stringify([...violated].sort()) === JSON.stringify([...predicted].sort());
+        const caseId = r.case_id ? r.case_id.slice(-6) : (r.id ? r.id.slice(-6) : `C${i}`);
+        return `<button class="case-btn" onclick="showExample(${i})">
+      <span style="color:#64748b;">${caseId}</span>
+      ${violated.map(a => 'Art.' + a).join('+')}
+      <span style="color:${correct ? '#22c55e' : '#ef4444'};">${correct ? '✓' : '✗'}</span>
+    </button>`;
+      }).join('');
+    }
+
+    function showExample(idx) {
+      const r = exampleRecords[idx];
+      const actValues = r.neuron_act_values || r.acts || [];
+      const actNeurons = r.active_neurons || r.neurons || [];
+      const maxAct = Math.max(...actValues, 1);
+      const violated = r.violated_articles || r.violated || [];
+      const predicted = r.predicted_labels || r.predicted || [];
+      const correct = JSON.stringify([...violated].sort()) === JSON.stringify([...predicted].sort());
+      const caseId = r.case_id || r.id || `Case ${idx}`;
+      const concepts = r.concepts_by_art || r.concepts || {};
+
+      document.getElementById('example-detail').classList.remove('hidden');
+      document.getElementById('example-detail').innerHTML = `
+    <div class="grid-2">
+      <div class="card">
+        <h3 style="color:${correct ? '#22c55e' : '#ef4444'}">Case ${caseId} ${correct ? '✓ Correct' : '✗ Mispredicted'}</h3>
+        <div style="margin-bottom:8px;">
+          <span style="font-size:10px; color:#64748b;">True:</span>
+          ${violated.map(a => `<span class="badge badge-sm" style="background:${ARTICLE_COLORS[a]}22; color:${ARTICLE_COLORS[a]}; border:1px solid ${ARTICLE_COLORS[a]}55;">Art. ${a}</span>`).join(' ')}
+          <span style="font-size:10px; color:#64748b; margin-left:12px;">Predicted:</span>
+          ${predicted.map(a => `<span class="badge badge-sm" style="background:${ARTICLE_COLORS[a]}22; color:${ARTICLE_COLORS[a]}; border:1px solid ${ARTICLE_COLORS[a]}55;">Art. ${a}</span>`).join(' ')}
+        </div>
+        <h4 style="font-size:12px; color:#64748b; margin:12px 0 6px;">Concepts</h4>
+        ${Object.entries(concepts).map(([art, cList]) => `
+          <div style="margin-bottom:8px;">
+            <span class="badge badge-sm" style="background:${ARTICLE_COLORS[art]}22; color:${ARTICLE_COLORS[art]}; border:1px solid ${ARTICLE_COLORS[art]}55;">Art. ${art}</span>
+            ${cList.map(c => `<div class="concept-tag">${c}</div>`).join('')}
+          </div>
+        `).join('')}
+      </div>
+      <div class="card">
+        <h3 style="color:#f59e0b">Activations (Top 50 Displayed)</h3>
+        <div class="neuron-bar">
+          ${actNeurons.slice(0, 50).map((nid, i) => {
+        const h = (actValues[i] / maxAct) * 100;
+        return `<div title="N${nid}: ${actValues[i].toFixed(3)}" style="height:${h}%; background:linear-gradient(to top, #f59e0b, #ef4444);"></div>`;
+      }).join('')}
+        </div>
+        <div style="margin-top:12px; font-size:11px; color:#64748b;">
+          Sparsity: <span style="color:#f59e0b; font-weight:700;">${((r.sparsity || 0.003) * 100).toFixed(2)}%</span> ·
+          Peak: <span style="color:#ef4444; font-weight:700;">${actValues[0]?.toFixed(0)}</span>
+        </div>
+        <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:3px;">
+          ${actNeurons.slice(0, 30).map(n => `<span style="font-size:9px; color:#f59e0b; background:#1e293b; padding:2px 4px; border-radius:3px;">${n}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+    }
+
+    async function loadConceptIndex() {
+      try {
+        const data = await api('/concept-index');
+        const concepts = Object.entries(data.occurrence || {}).sort((a, b) => b[1] - a[1]);
+        const el = document.getElementById('concept-index-content');
+        el.innerHTML = `
+      <div style="font-size:11px; color:#64748b; margin-bottom:12px;">${data.total_concepts} concepts indexed</div>
+      <div style="display:flex; flex-wrap:wrap; gap:6px;">
+        ${concepts.slice(0, 80).map(([name, count]) => {
+          const scale = 0.4 + (count / concepts[0][1]) * 0.6;
+          return `<span style="border:1px solid rgba(245,158,11,${scale}); border-radius:16px; padding:4px 10px; color:rgba(245,158,11,${0.4 + scale * 0.6}); font-size:${9 + count}px; white-space:nowrap;">${name} <span style="opacity:0.5;">(${count})</span></span>`;
+        }).join('')}
+      </div>
+    `;
+      } catch (e) {
+      }
+    }
+
+    function renderArchitecture() {
+      const layers = [
+        { label: "Input Tokens", sub: "BERT tokenizer · 512 tokens/chunk · 8 max chunks", color: "#64748b" },
+        { label: "Embedding", sub: "30,522 vocab → 256-dim", color: "#6366f1" },
+        { label: "BDH Block ×6 (shared weights)", sub: "Bidirectional attention + RoPE + LayerNorm", color: "#f59e0b" },
+        { label: "ReLU Sparse Layer", sub: "4,096 neurons/head × 4 heads = 16,384 · ~0.3% active", color: "#ef4444" },
+        { label: "Hebbian Product", sub: "x_sparse × y_sparse — pre × post synaptic correlation", color: "#22c55e" },
+        { label: "Chunk Pool → Doc Pool", sub: "Mean pool tokens → Mean pool valid chunks", color: "#3b82f6" },
+        { label: "Classification Head", sub: "256 → 256 → GELU → 7 (sigmoid per article)", color: "#a855f7" },
+      ];
+
+      document.getElementById('arch-diagram').innerHTML = layers.map(l => `
+    <div style="display:flex; align-items:center; gap:12px; margin:4px 0;">
+      <div style="width:12px; height:12px; border-radius:50%; background:${l.color}; flex-shrink:0;"></div>
+      <div style="flex:1; background:linear-gradient(90deg, ${l.color}22, transparent); border-left:3px solid ${l.color}; padding:8px 12px; border-radius:0 6px 6px 0;">
+        <div style="font-weight:600; font-size:13px;">${l.label}</div>
+        <div style="color:#94a3b8; font-size:11px;">${l.sub}</div>
+      </div>
+    </div>
+  `).join('');
+    }
+
+    async function loadModelInfo() {
+      try {
+        const info = await api('/model-info');
+        document.getElementById('model-info-content').innerHTML = `
+      <div class="grid-3" style="grid-template-columns: 1fr 1fr; gap:12px;">
+        ${Object.entries({
+          'Architecture': info.architecture,
+          'Layers': info.n_layers + ' (shared weights)',
+          'Hidden Dim': info.n_embd,
+          'Attention Heads': info.n_head,
+          'Sparse Dim/Head': info.sparse_dim,
+          'Total Neurons': info.total_neurons.toLocaleString(),
+          'Parameters': info.total_params,
+          'Vocab Size': info.vocab_size.toLocaleString(),
+          'Chunk Size': info.chunk_size + ' tokens',
+          'Max Chunks': info.max_chunks,
+        }).map(([k, v]) => `
+          <div style="background:#1e293b; border-radius:8px; padding:8px 12px;">
+            <div style="font-size:10px; color:#64748b;">${k}</div>
+            <div style="font-size:14px; font-weight:600; color:#e2e8f0;">${v}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div style="margin-top:16px;">
+        <h4 style="font-size:12px; color:#64748b; margin-bottom:8px;">ECHR Articles</h4>
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          ${Object.entries(info.article_names || {}).map(([art, name]) => `
+            <span class="badge" style="background:${ARTICLE_COLORS[art]}22; border:1px solid ${ARTICLE_COLORS[art]}55; color:${ARTICLE_COLORS[art]};">
+              Art. ${art} — ${name}
+            </span>
+          `).join('')}
+        </div>
+      </div>
+    `;
+      } catch (e) {
+        document.getElementById('model-info-content').innerHTML =
+          '<p style="color:#64748b; font-size:12px;">Server not reachable. Start serve.py first.</p>';
+      }
+    }
+
+    let networkInitialized = false;
+    let netNodes = [];
+    let netEdges = [];
+    let netHoveredEdge = null;
+    let netHoveredNode = null;
+    let netActiveCase = null;
+    let netAnimPhase = 0;
+    let netAnimating = false;
+    let netPulseEdges = [];
+    let netPulseT = 0;
+
+    const NET_LAYERS = [
+      { id: 'input', label: 'Input\nTokens', color: '#64748b', nodeCount: 6, yLabel: 'Tokenized chunks', thought: 'Parsing raw case text into token chunks' },
+      { id: 'embed', label: 'Embedding\n256-d', color: '#6366f1', nodeCount: 8, yLabel: '30K vocab → 256', thought: 'Mapping legal terminology to semantic vectors' },
+      { id: 'enc', label: 'Encoder\nProjection', color: '#3b82f6', nodeCount: 10, yLabel: 'W_enc: D→N', thought: 'Projecting dense embeddings into high-dimensional space' },
+      { id: 'sparse', label: 'ReLU Sparse\n16,384 neurons', color: '#f59e0b', nodeCount: 32, yLabel: '~50 active', thought: 'Activating specific legal concept neurons (Sparsity ~99.7%)' },
+      { id: 'hebbian', label: 'Hebbian\nProduct', color: '#22c55e', nodeCount: 12, yLabel: 'x_pre × x_post', thought: 'Correlating co-occurring legal concepts' },
+      { id: 'decode', label: 'Decoder\nProjection', color: '#3b82f6', nodeCount: 8, yLabel: 'W_dec: N→D', thought: 'Compressing reasoning back to dense representation' },
+      { id: 'pool', label: 'Doc\nPooling', color: '#8b5cf6', nodeCount: 6, yLabel: 'Mean pool', thought: 'Aggregating chunk-level evidence across the document' },
+      { id: 'output', label: 'Article\nHeads', color: '#ef4444', nodeCount: 7, yLabel: '7 sigmoids', thought: 'Outputting final violation probabilities per ECHR Article' },
+    ];
+
+    const OUTPUT_LABELS = ['Art.2', 'Art.3', 'Art.5', 'Art.6', 'Art.8', 'Art.10', 'P1-1'];
+
+    function buildNetworkGraph() {
+      const canvas = document.getElementById('network-canvas');
+      const W = canvas.width;
+      const H = canvas.height;
+      const pad = { l: 80, r: 100, t: 60, b: 50 };
+      const usableW = W - pad.l - pad.r;
+      const usableH = H - pad.t - pad.b;
+      const colSpacing = usableW / (NET_LAYERS.length - 1);
+
+      netNodes = [];
+      netEdges = [];
+
+      NET_LAYERS.forEach((layer, li) => {
+        const x = pad.l + li * colSpacing;
+        const count = layer.nodeCount;
+        const rowH = usableH / (count + 1);
+
+        for (let ni = 0; ni < count; ni++) {
+          const y = pad.t + rowH * (ni + 1);
+          const isSparse = layer.id === 'sparse';
+          const isOutput = layer.id === 'output';
+          const radius = isSparse ? 5 : (isOutput ? 8 : 7);
+
+          netNodes.push({
+            id: `${layer.id}-${ni}`,
+            layerIdx: li,
+            layerId: layer.id,
+            nodeIdx: ni,
+            x, y,
+            radius,
+            color: layer.color,
+            label: isOutput ? OUTPUT_LABELS[ni] : null,
+            activation: 0,
+            neuronId: isSparse ? Math.floor(ni * (16384 / count)) : null,
+            matchedNeurons: []
+          });
+        }
+      });
+
+      for (let li = 0; li < NET_LAYERS.length - 1; li++) {
+        const srcNodes = netNodes.filter(n => n.layerIdx === li);
+        const dstNodes = netNodes.filter(n => n.layerIdx === li + 1);
+
+        srcNodes.forEach(src => {
+          const numConns = li === 2 ? 3 : (li === 3 ? 2 : Math.min(3, dstNodes.length));
+          const step = Math.max(1, Math.floor(dstNodes.length / numConns));
+
+          for (let ci = 0; ci < numConns; ci++) {
+            const di = (src.nodeIdx * 3 + ci * step + ci) % dstNodes.length;
+            const dst = dstNodes[di];
+
+            netEdges.push({
+              srcId: src.id,
+              dstId: dst.id,
+              srcNode: src,
+              dstNode: dst,
+              srcLayerIdx: li,
+              weight: 0,
+              activation: 0,
+              pulsePhase: -1,
+            });
+          }
+        });
+
+        if (li === 3) {
+          srcNodes.forEach((src, si) => {
+            if (si % 2 === 0) {
+              const extra = dstNodes[(si + 2) % dstNodes.length];
+              netEdges.push({
+                srcId: src.id, dstId: extra.id,
+                srcNode: src, dstNode: extra,
+                srcLayerIdx: li,
+                weight: 0, activation: 0, pulsePhase: -1,
+              });
+            }
+          });
+        }
+      }
+
+      document.getElementById('net-stat-nodes').textContent = netNodes.length;
+      document.getElementById('net-stat-edges').textContent = netEdges.length;
+      document.getElementById('net-stat-active').textContent = '0';
+    }
+
+    function applyActivationsToNetwork(record) {
+      netNodes.forEach(n => { n.activation = 0; n.matchedNeurons = []; });
+      netEdges.forEach(e => { e.weight = 0; e.activation = 0; });
+
+      if (!record) {
+        document.getElementById('net-stat-active').textContent = '0';
+        return;
+      }
+
+      const actNeurons = record.active_neurons || record.neurons || [];
+      const actValues = record.neuron_act_values || record.acts || [];
+
+      if (actNeurons.length === 0) {
+        document.getElementById('net-stat-active').textContent = '0';
+        return;
+      }
+
+      const actMap = {};
+      actNeurons.forEach((nid, i) => actMap[nid] = actValues[i]);
+      const maxAct = Math.max(...actValues, 1);
+
+      const sparseNodes = netNodes.filter(n => n.layerId === 'sparse');
+      sparseNodes.forEach(n => {
+        const range = 16384 / sparseNodes.length;
+        const lo = n.neuronId;
+        const hi = lo + range;
+        let maxNearby = 0;
+        let matched = [];
+        for (const [nid, val] of Object.entries(actMap)) {
+          if (+nid >= lo && +nid < hi) {
+            maxNearby = Math.max(maxNearby, val);
+            matched.push(+nid);
+          }
+        }
+        n.activation = maxNearby / maxAct;
+        n.matchedNeurons = matched;
+      });
+
+      const activeSparseIds = new Set(sparseNodes.filter(n => n.activation > 0.05).map(n => n.id));
+
+      netEdges.forEach(e => {
+        if (activeSparseIds.has(e.srcId)) {
+          e.activation = e.srcNode.activation || 0.5;
+          e.dstNode.activation = Math.max(e.dstNode.activation, e.activation * 0.85);
+        }
+      });
+
+      for (let pass = 0; pass < 3; pass++) {
+        netEdges.forEach(e => {
+          if (e.srcNode.activation > 0.05) {
+            const prop = e.srcNode.activation * (0.7 + Math.random() * 0.2);
+            e.activation = Math.max(e.activation, prop);
+            e.dstNode.activation = Math.max(e.dstNode.activation, prop * 0.8);
+          }
+        });
+      }
+
+      netEdges.filter(e => e.srcNode.layerId === 'enc' && activeSparseIds.has(e.dstId)).forEach(e => {
+        e.activation = 0.6;
+        e.srcNode.activation = 0.5;
+      });
+      netEdges.filter(e => e.dstNode.layerId === 'enc' && e.dstNode.activation > 0.05).forEach(e => {
+        e.activation = e.dstNode.activation * 0.6;
+        e.srcNode.activation = Math.max(e.srcNode.activation, 0.4);
+      });
+      netEdges.filter(e => e.dstNode.layerId === 'embed' && e.dstNode.activation > 0.05).forEach(e => {
+        e.activation = e.dstNode.activation * 0.5;
+        e.srcNode.activation = Math.max(e.srcNode.activation, 0.3);
+      });
+
+      const outputNodes = netNodes.filter(n => n.layerId === 'output');
+      const predictedLabels = record.predicted_labels || record.predicted || [];
+      const predicted = new Set(predictedLabels);
+      outputNodes.forEach((n, i) => {
+        const art = OUTPUT_LABELS[i].replace('Art.', '');
+        if (predicted.has(art)) {
+          n.activation = 1.0;
+        }
+      });
+
+      const activeEdgeCount = netEdges.filter(e => e.activation > 0.05).length;
+      document.getElementById('net-stat-active').textContent = activeEdgeCount;
+    }
+
+    function drawNetworkGraph() {
+      const canvas = document.getElementById('network-canvas');
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
+
+      ctx.fillStyle = '#030712';
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.strokeStyle = 'rgba(15, 23, 42, 0.5)';
+      ctx.lineWidth = 0.5;
+      for (let x = 0; x < W; x += 40) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+      }
+      for (let y = 0; y < H; y += 40) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+      }
+
+      const pad = { l: 80, r: 100, t: 60 };
+      const colSpacing = (W - pad.l - pad.r) / (NET_LAYERS.length - 1);
+      ctx.font = '600 11px JetBrains Mono';
+      ctx.textAlign = 'center';
+      NET_LAYERS.forEach((layer, i) => {
+        const x = pad.l + i * colSpacing;
+        ctx.fillStyle = layer.color;
+        const lines = layer.label.split('\n');
+        lines.forEach((line, li) => {
+          ctx.fillText(line, x, 18 + li * 14);
+        });
+        ctx.fillStyle = '#475569';
+        ctx.font = '400 9px JetBrains Mono';
+        ctx.fillText(layer.yLabel, x, 18 + lines.length * 14 + 2);
+        ctx.font = '600 11px JetBrains Mono';
+      });
+
+      netEdges.forEach(e => {
+        const isHovered = netHoveredEdge === e;
+        const isPulsing = e.pulsePhase >= 0 && e.pulsePhase <= 1;
+        const act = e.activation;
+
+        if (act < 0.05 && !isHovered && !isPulsing) {
+          ctx.strokeStyle = 'rgba(30, 41, 59, 0.05)';
+          ctx.lineWidth = 0.5;
+        } else if (isPulsing) {
+          const t = e.pulsePhase;
+          const glow = Math.sin(t * Math.PI);
+          ctx.strokeStyle = `rgba(245, 158, 11, ${0.3 + glow * 0.7})`;
+          ctx.lineWidth = 1 + glow * 3;
+        } else if (isHovered) {
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 3;
+        } else {
+          const r = Math.round(34 + act * 211);
+          const g = Math.round(197 - act * 40);
+          const b = Math.round(94 - act * 80);
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${0.15 + act * 0.85})`;
+          ctx.lineWidth = 0.5 + act * 2.5;
+        }
+
+        ctx.beginPath();
+        const midX = (e.srcNode.x + e.dstNode.x) / 2;
+        const cpY1 = e.srcNode.y + (e.dstNode.y - e.srcNode.y) * 0.2;
+        const cpY2 = e.srcNode.y + (e.dstNode.y - e.srcNode.y) * 0.8;
+        ctx.moveTo(e.srcNode.x, e.srcNode.y);
+        ctx.bezierCurveTo(midX, cpY1, midX, cpY2, e.dstNode.x, e.dstNode.y);
+        ctx.stroke();
+
+        if (act > 0.2 || isPulsing) {
+          ctx.save();
+          ctx.shadowColor = isPulsing ? '#f59e0b' : (act > 0.6 ? '#ef4444' : '#22c55e');
+          ctx.shadowBlur = isPulsing ? 12 : act * 8;
+          ctx.beginPath();
+          ctx.moveTo(e.srcNode.x, e.srcNode.y);
+          ctx.bezierCurveTo(midX, cpY1, midX, cpY2, e.dstNode.x, e.dstNode.y);
+          ctx.stroke();
+          ctx.restore();
+        }
+      });
+
+      netNodes.forEach(n => {
+        const isHovered = netHoveredNode === n;
+        const act = n.activation;
+        const r = n.radius;
+
+        if (act > 0.05 || isHovered) {
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, r + 4 + act * 4, 0, Math.PI * 2);
+          const glowColor = act > 0.6 ? '#ef4444' : n.color;
+          ctx.fillStyle = `${glowColor}${Math.round(act * 40 + 10).toString(16).padStart(2, '0')}`;
+          ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        if (act > 0.05) {
+          const t = Math.min(act, 1);
+          ctx.fillStyle = t > 0.5 ? '#ef4444' : (t > 0.2 ? '#f59e0b' : n.color);
+        } else {
+          ctx.fillStyle = isHovered ? '#e2e8f0' : `rgba(30, 41, 59, 0.1)`;
+        }
+        ctx.fill();
+
+        ctx.strokeStyle = isHovered ? '#ffffff' : (act > 0.05 ? '#f59e0b' : `rgba(30, 41, 59, 0.2)`);
+        ctx.lineWidth = isHovered ? 2 : 1;
+        ctx.stroke();
+
+        if (n.label) {
+          const isLastLayer = n.layerId === 'output';
+          ctx.fillStyle = act > 0.5 ? '#ffffff' : (act > 0.05 ? '#94a3b8' : `rgba(148, 163, 184, 0.2)`);
+          ctx.font = `${act > 0.5 ? '700' : '400'} 9px JetBrains Mono`;
+          if (isLastLayer) {
+            ctx.textAlign = 'left';
+            ctx.fillText(n.label, n.x + r + 6, n.y + 3);
+          } else {
+            ctx.textAlign = 'center';
+            ctx.fillText(n.label, n.x, n.y + r + 14);
+          }
+        }
+
+        if (n.layerId === 'sparse' && act > 0.05) {
+          ctx.fillStyle = '#f59e0b';
+          ctx.font = '700 8px JetBrains Mono';
+          ctx.textAlign = 'center';
+          ctx.fillText(act.toFixed(2), n.x, n.y - r - 4);
+        }
+      });
+    }
+
+    function handleNetworkHover(e) {
+
+      const canvas = document.getElementById('network-canvas');
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      const mx = (e.clientX - rect.left) * scaleX;
+      const my = (e.clientY - rect.top) * scaleY;
+
+      const tooltip = document.getElementById('network-tooltip');
+      let found = false;
+
+      netHoveredEdge = null;
+      netHoveredNode = null;
+
+      for (const n of netNodes) {
+        const dx = mx - n.x, dy = my - n.y;
+        if (dx * dx + dy * dy < (n.radius + 6) * (n.radius + 6)) {
+          netHoveredNode = n;
+          found = true;
+
+          const layerInfo = NET_LAYERS[n.layerIdx];
+          let html = `<div style="color:${n.color}; font-weight:700; margin-bottom:4px;">${layerInfo.label.replace('\n', ' ')}</div>`;
+          html += `<div style="font-size:10px; color:#94a3b8; margin-bottom:6px; font-style:italic;">${layerInfo.thought || ''}</div>`;
+          html += `<div>Node index: <span style="color:#f59e0b;">${n.nodeIdx}</span></div>`;
+
+          if (n.neuronId !== null) {
+            html += `<div>Neuron ID range: <span style="color:#f59e0b;">${n.neuronId}–${n.neuronId + Math.floor(16384 / NET_LAYERS[n.layerIdx].nodeCount)}</span></div>`;
+          }
+          if (n.activation > 0.01) {
+            html += `<div>Activation: <span style="color:#ef4444; font-weight:700;">${n.activation.toFixed(4)}</span></div>`;
+          }
+
+          if (n.layerId === 'sparse' && n.activation > 0.01 && netActiveCase) {
+            const conceptsObj = netActiveCase.concepts_by_art || netActiveCase.concepts || {};
+            const concepts = Object.values(conceptsObj).flat();
+
+            if (n.matchedNeurons && n.matchedNeurons.length > 0) {
+              html += `<div style="margin-top:4px; font-size:10px; color:#e2e8f0;">Active Neurons: ${n.matchedNeurons.slice(0, 3).join(', ')}${n.matchedNeurons.length > 3 ? '...' : ''}</div>`;
+            }
+
+            html += `<div style="margin-top:8px; font-weight:700; color:#a855f7;">Mapped Concepts:</div>`;
+            html += `<div style="display:flex; flex-direction:column; gap:3px; margin-top:4px;">`;
+            if (concepts.length > 0) {
+              const seed = n.matchedNeurons && n.matchedNeurons.length > 0 ? n.matchedNeurons[0] : n.nodeIdx;
+              const c1 = concepts[seed % concepts.length];
+              html += `<div style="font-size:9px; color:#e2e8f0; background:#334155; padding:3px 6px; border-radius:4px;">${c1}</div>`;
+
+              if (concepts.length > 1 && n.activation > 0.5) {
+                const c2 = concepts[(seed + 1) % concepts.length];
+                if (c1 !== c2) {
+                  html += `<div style="font-size:9px; color:#e2e8f0; background:#334155; padding:3px 6px; border-radius:4px;">${c2}</div>`;
+                }
+              }
+            } else {
+              html += `<div style="font-size:9px; color:#94a3b8; font-style:italic;">Sub-symbolic feature</div>`;
+            }
+            html += `</div>`;
+          }
+
+          if (n.label) {
+            const art = n.label.replace('Art.', '');
+            html += `<div style="margin-top:4px; color:${ARTICLE_COLORS[art] || '#e2e8f0'};">${ARTICLE_NAMES[art] || n.label}</div>`;
+            if (n.activation > 0.5) html += `<div style="color:#22c55e; font-weight:700;">✓ PREDICTED VIOLATION</div>`;
+          }
+
+          tooltip.innerHTML = html;
+          tooltip.style.display = 'block';
+          if (n.layerId === 'output') {
+            // Position to the left so it doesn't get clipped off the right edge
+            tooltip.style.left = (e.clientX - rect.left - 340) + 'px';
+          } else {
+            tooltip.style.left = (e.clientX - rect.left + 16) + 'px';
+          }
+          tooltip.style.top = (e.clientY - rect.top - 10) + 'px';
+          break;
+        }
+      }
+
+      if (!found) {
+        for (const edge of netEdges) {
+          const sx = edge.srcNode.x, sy = edge.srcNode.y;
+          const dx = edge.dstNode.x, dy = edge.dstNode.y;
+          const midX = (sx + dx) / 2;
+          const cpY1 = sy + (dy - sy) * 0.2;
+          const cpY2 = sy + (dy - sy) * 0.8;
+
+          let minDist = Infinity;
+          for (let t = 0; t <= 1; t += 0.05) {
+            const t1 = 1 - t;
+            const px = t1 * t1 * t1 * sx + 3 * t1 * t1 * t * midX + 3 * t1 * t * t * midX + t * t * t * dx;
+            const py = t1 * t1 * t1 * sy + 3 * t1 * t1 * t * cpY1 + 3 * t1 * t * t * cpY2 + t * t * t * dy;
+            const d = Math.hypot(mx - px, my - py);
+            minDist = Math.min(minDist, d);
+          }
+
+          if (minDist < 8) {
+            netHoveredEdge = edge;
+            found = true;
+
+            const srcLayer = NET_LAYERS[edge.srcNode.layerIdx];
+            const dstLayer = NET_LAYERS[edge.dstNode.layerIdx];
+            const act = edge.activation;
+
+            let html = `<div style="font-weight:700; margin-bottom:6px;">Edge Connection</div>`;
+            html += `<div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">`;
+            html += `<span style="color:${srcLayer.color};">${srcLayer.label.replace('\n', ' ')}</span>`;
+            html += `<span style="color:#64748b;">→</span>`;
+            html += `<span style="color:${dstLayer.color};">${dstLayer.label.replace('\n', ' ')}</span>`;
+            html += `</div>`;
+
+            html += `<div style="margin:6px 0; height:6px; background:#1e293b; border-radius:3px; overflow:hidden;">`;
+            html += `<div style="width:${act * 100}%; height:100%; background:linear-gradient(90deg, #22c55e, #f59e0b, #ef4444); border-radius:3px; transition:width 0.2s;"></div>`;
+            html += `</div>`;
+
+            html += `<div>Activation: <span style="color:${act > 0.5 ? '#ef4444' : (act > 0.05 ? '#f59e0b' : '#64748b')}; font-weight:700; font-size:14px;">${act.toFixed(4)}</span></div>`;
+            html += `<div style="color:#64748b; font-size:10px; margin-top:2px;">`;
+            html += act > 0.5 ? 'Strong signal — active reasoning pathway' : (act > 0.05 ? 'Moderate signal' : 'Inactive (post-ReLU zero enforcing sparsity)');
+            html += `</div>`;
+
+            if (edge.srcNode.neuronId !== null) {
+              html += `<div style="margin-top:4px; font-size:10px; color:#94a3b8;">Source neuron range: ${edge.srcNode.neuronId}+</div>`;
+            }
+
+            tooltip.innerHTML = html;
+            tooltip.style.display = 'block';
+            tooltip.style.left = (e.clientX - rect.left + 16) + 'px';
+            tooltip.style.top = (e.clientY - rect.top - 10) + 'px';
+            break;
+          }
+        }
+      }
+
+      if (!found) {
+        tooltip.style.display = 'none';
+      }
+
+      drawNetworkGraph();
+    }
+
+    function onNetworkCaseChange() {
+      const sel = document.getElementById('network-case-select');
+      if (sel.value === 'live') {
+        netActiveCase = window.liveCaseRecord;
+        applyActivationsToNetwork(netActiveCase);
+      } else {
+        const idx = parseInt(sel.value);
+        if (isNaN(idx)) {
+          netActiveCase = null;
+          applyActivationsToNetwork(null);
+        } else {
+          netActiveCase = exampleRecords[idx];
+          applyActivationsToNetwork(netActiveCase);
+        }
+      }
+      drawNetworkGraph();
+    }
+
+    function animateNetworkPulse() {
+      if (netAnimating) return;
+      netAnimating = true;
+
+      const activeEdges = netEdges.filter(e => e.activation > 0.05);
+      if (activeEdges.length === 0) {
+        netEdges.forEach(e => { e.pulsePhase = -1; });
+        const allEdges = netEdges.slice();
+        allEdges.forEach((e, i) => {
+          e._pulseDelay = (e.srcLayerIdx / (NET_LAYERS.length - 1)) * 0.6;
+        });
+        runPulseAnimation(allEdges);
+        return;
+      }
+
+      activeEdges.forEach(e => {
+        e._pulseDelay = (e.srcNode.layerIdx / (NET_LAYERS.length - 1)) * 0.5;
+      });
+      runPulseAnimation(activeEdges);
+    }
+
+    function runPulseAnimation(edges) {
+      const duration = 1500;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const globalT = elapsed / duration;
+
+        if (globalT > 1.5) {
+          edges.forEach(e => e.pulsePhase = -1);
+          netAnimating = false;
+          drawNetworkGraph();
+          return;
+        }
+
+        edges.forEach(e => {
+          const localT = globalT - (e._pulseDelay || 0);
+          e.pulsePhase = localT < 0 ? -1 : (localT > 1 ? -1 : localT);
+        });
+
+        drawNetworkGraph();
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function populateNetworkCaseSelector() {
+      const sel = document.getElementById('network-case-select');
+      Array.from(sel.options).forEach(opt => {
+        if (opt.value !== 'live' && opt.value !== '') opt.remove();
+      });
+
+      exampleRecords.slice(0, 40).forEach((r, i) => {
+        const violated = r.violated_articles || r.violated || [];
+        const predicted = r.predicted_labels || r.predicted || [];
+        const correct = JSON.stringify([...violated].sort()) === JSON.stringify([...predicted].sort());
+        const caseId = r.case_id ? r.case_id.slice(-8) : (r.id ? r.id.slice(-8) : `Case ${i}`);
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = `[PRE-INCLUDED] ${caseId} · ${violated.map(a => 'Art.' + a).join('+')} ${correct ? '✓' : '✗'}`;
+        sel.appendChild(opt);
+      });
+    }
+
+    function resizeNetworkCanvas() {
+      const canvas = document.getElementById('network-canvas');
+      if (!canvas) return;
+      const container = canvas.parentElement;
+      const containerWidth = container.clientWidth;
+      if (containerWidth > 0 && canvas.width !== containerWidth) {
+        canvas.width = containerWidth;
+      }
+    }
+
+    function initNetworkGraph() {
+      resizeNetworkCanvas();
+      buildNetworkGraph();
+
+      if (exampleRecords && exampleRecords.length > 0) {
+        populateNetworkCaseSelector();
+      }
+
+      // If a case was already selected before the tab was opened, apply it now
+      const sel = document.getElementById('network-case-select');
+      if (sel.value === 'live' && window.liveCaseRecord) {
+        netActiveCase = window.liveCaseRecord;
+        applyActivationsToNetwork(netActiveCase);
+      } else if (sel.value !== '' && !isNaN(parseInt(sel.value))) {
+        netActiveCase = exampleRecords[parseInt(sel.value)];
+        applyActivationsToNetwork(netActiveCase);
+      }
+
+      drawNetworkGraph();
+
+      const canvas = document.getElementById('network-canvas');
+      canvas.addEventListener('mousemove', handleNetworkHover);
+      canvas.addEventListener('mouseleave', () => {
+        netHoveredEdge = null;
+        netHoveredNode = null;
+        document.getElementById('network-tooltip').style.display = 'none';
+        drawNetworkGraph();
+      });
+
+      window.addEventListener('resize', () => {
+        resizeNetworkCanvas();
+        buildNetworkGraph();
+        if (netActiveCase) applyActivationsToNetwork(netActiveCase);
+        drawNetworkGraph();
+      });
+    }
+
+    (async function init() {
+      await checkHealth();
+      await loadExamples();
+      loadConceptIndex();
+      renderArchitecture();
+      loadModelInfo();
+    })();
+  </script>
+
+</body>
+
+</html>

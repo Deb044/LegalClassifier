@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pydantic
+torch
+transformers
+numpy
+pandas
+matplotlib
+seaborn
+scikit-learn
+jupyter
+tqdm
+requests
