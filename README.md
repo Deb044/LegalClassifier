@@ -210,7 +210,7 @@ Place the downloaded file in the project root as `best_model.pt`. The server wil
 ### Prerequisites
 
 - Python 3.9–3.11
-- NVIDIA GPU recommended for training; CPU is sufficient for inference
+- NVIDIA GPU recommended for training; CPU is sufficient for inference.
 
 ### 1. Clone the repository
 
