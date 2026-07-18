@@ -374,7 +374,6 @@ LegalClassifier/
 - **Scale the concept mapping pipeline** to all 16,384 neurons using automated LLM pipelines
 - **Per-layer circuit tracing** to see how a concept evolves across the 6 BDH iterations
 - **Causal intervention experiments**: zero out specific neurons and observe change in predictions to confirm causal role
-- **Multi-language support**: extend to French ECHR judgments using multilingual tokenizer
 - **Larger training set**: include case_id metadata, cross-reference related cases
 - **User-facing explanations**: generate natural-language explanations from neuron activation patterns (e.g., "This case was flagged for Article 3 because neurons associated with 'inadequate detention conditions' activated strongly")
 - **Compare against LegalBERT and other legal-domain models**
